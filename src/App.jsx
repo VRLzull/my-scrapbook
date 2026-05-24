@@ -184,6 +184,7 @@ const App = () => {
 
       {/* Mobile Touch Navigation Overlay (Fallback) */}
       <div className="md:hidden fixed inset-0 z-30 pointer-events-none flex">
+        {/* Ketuk Kiri -> Halaman Sebelumnya */}
         <div 
           onClick={() => paginate(-1)} 
           className="w-1/4 h-full pointer-events-auto active:bg-white/5 transition-colors flex items-center justify-start pl-4"
@@ -191,6 +192,7 @@ const App = () => {
           {currentPage > 0 && <ChevronLeft className="w-8 h-8 text-white/20" />}
         </div>
         <div className="w-2/4 h-full pointer-events-none" />
+        {/* Ketuk Kanan -> Halaman Selanjutnya */}
         <div 
           onClick={() => paginate(1)} 
           className="w-1/4 h-full pointer-events-auto active:bg-white/5 transition-colors flex items-center justify-end pr-4"
@@ -230,7 +232,9 @@ const App = () => {
               dragElastic={0.7}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = offset.x * velocity.x;
+                // Geser ke Kiri (offset.x negatif) -> Halaman Selanjutnya
                 if (swipe < -5000) paginate(1);
+                // Geser ke Kanan (offset.x positif) -> Halaman Sebelumnya
                 else if (swipe > 5000) paginate(-1);
               }}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
