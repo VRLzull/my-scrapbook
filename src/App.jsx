@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ChevronLeft, ChevronRight, Music, Disc, Heart, 
-  GraduationCap, Lock, Play, Mail, Star, Sparkles, 
-  Music2, Camera, Video, Moon, Send
+  ChevronLeft, ChevronRight, Disc, Heart, 
+  GraduationCap, Lock, Play, Mail, Sparkles 
 } from 'lucide-react';
 
 // Content exactly as requested with premium styling
