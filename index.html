@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Scrapbook Memories 🎓✨</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Dust Particles Background -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Floating Background Music Player -->
+    <div class="music-player-container">
+        <audio id="bg-audio" loop>
+            <!-- Cozy romantic lofi piano & guitar track -->
+            <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button class="music-toggle-btn" id="music-btn" title="Nyalakan Musik 🎵">
+            <div class="music-disc">
+                <i class="fa-solid fa-compact-disc"></i>
+            </div>
+            <div class="music-waves">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- MAIN 3D BINDER SCENARIO WRAPPER -->
+    <div class="scrapbook-perspective">
+        
+        <!-- Book Navigation Buttons -->
+        <button class="book-nav-btn prev-btn" id="prev-btn" title="Halaman Sebelumnya">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="book-binder-container">
+            
+            <!-- Spiral Binder Metal Rings -->
+            <div class="binder-rings" id="binder-rings">
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+                <span class="ring-bar"></span>
+            </div>
+
+            <!-- Virtual Scrapbook Book Structure (6 Sheets / 12 Pages) -->
+            <div class="book" id="book">
+                
+                <!-- ==========================================
+                     SHEET 0: WELCOME COVER & LITTLE MEMORIES PART 1
+                     ========================================== -->
+                <div class="paper-sheet" id="sheet-0">
+                    <!-- FRONT SIDE: Cover Page -->
+                    <div class="page-side front-side active-mobile" data-page-index="1">
+                        <div class="glass-page-content text-center cover-layout">
+                            <span class="badge">A Little Memory Lane ✨</span>
+                            <h1 class="serif-title main-heading">welcome</h1>
+                            <p class="subtitle">
+                                Selamat datang di tempat kecil yang isinya banyak cerita tentang kamu.
+                            </p>
+                            <p class="subtitle font-sm">
+                                Tentang tawa kecil, moment random, hari-hari sederhana, dan kenangan yang ternyata masih aku ingat sampai sekarang.
+                            </p>
+                            
+                            <!-- Elegant Interactive Envelope Seal -->
+                            <div class="envelope-wrapper" id="envelope-trigger">
+                                <div class="envelope">
+                                    <div class="envelope-flap"></div>
+                                    <div class="envelope-pocket"></div>
+                                    <div class="envelope-letter">
+                                        <span class="letter-emoji">✉️</span>
+                                        <p class="letter-hint">open memories</p>
+                                    </div>
+                                    <div class="wax-seal">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="year-stamp">Est. <span class="name-placeholder">2026</span></p>
+                        </div>
+                    </div>
+                    
+                    <!-- BACK SIDE: Little Memories (Photos 1-3) -->
+                    <div class="page-side back-side" data-page-index="2">
+                        <div class="glass-page-content polaroid-board">
+                            <div class="board-header">
+                                <span class="tag">Little Memories 📸 • Hal 2</span>
+                                <h2 class="serif-title section-title">little memories</h2>
+                                <p class="section-desc">Aku nggak sadar ternyata kita punya cukup banyak kenangan sampai semuanya terkumpul di sini.</p>
+                                <p class="instruction-tap"><i class="fa-solid fa-hand-pointer"></i> Ketuk polaroid untuk membaca cerita!</p>
+                            </div>
+
+                            <!-- Polaroid Collage Pile (Photos 1-3) -->
+                            <div class="polaroids-wrapper">
+                                <!-- Photo 1 -->
+                                <div class="polaroid-card" style="--rotation: -4deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 1">
+                                            </div>
+                                            <p class="polaroid-caption">momen terindah ✨</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Our Moment</h3>
+                                                <p class="handwritten font-sm">"masih jadi salah satu foto favoritku."</p>
+                                                <span class="heart-stamp">💖</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Photo 2 -->
+                                <div class="polaroid-card" style="--rotation: 3deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 2">
+                                            </div>
+                                            <p class="polaroid-caption">momen sederhana 💫</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Simple Day</h3>
+                                                <p class="handwritten font-sm">"foto sederhana, tapi momentnya nggak sesederhana itu."</p>
+                                                <span class="heart-stamp">⭐</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Photo 3 -->
+                                <div class="polaroid-card" style="--rotation: -2deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 3">
+                                            </div>
+                                            <p class="polaroid-caption">hari yang cerah ☀️</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Warm Day</h3>
+                                                <p class="handwritten font-sm">"aku suka hari ini."</p>
+                                                <span class="heart-stamp">🌸</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     SHEET 1: LITTLE MEMORIES PART 2 & MOVING MEMORIES
+                     ========================================== -->
+                <div class="paper-sheet" id="sheet-1">
+                    <!-- FRONT SIDE: Little Memories (Photos 4-7) -->
+                    <div class="page-side front-side" data-page-index="3">
+                        <div class="glass-page-content polaroid-board">
+                            <div class="board-header">
+                                <span class="tag">Little Memories 📸 • Hal 3</span>
+                                <p class="instruction-tap"><i class="fa-solid fa-hand-pointer"></i> Ketuk foto lainnya!</p>
+                            </div>
+
+                            <!-- Polaroid Grid (Photos 4-7) -->
+                            <div class="polaroids-wrapper second-row">
+                                <!-- Photo 4 -->
+                                <div class="polaroid-card" style="--rotation: 2deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 4">
+                                            </div>
+                                            <p class="polaroid-caption">hal kecil 🌾</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Little Things</h3>
+                                                <p class="handwritten font-sm">"ternyata moment kecil bisa jadi kenangan besar ya."</p>
+                                                <span class="heart-stamp">🍂</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Photo 5 -->
+                                <div class="polaroid-card" style="--rotation: -3deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 5">
+                                            </div>
+                                            <p class="polaroid-caption">senyumanmu 🌿</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Your Smile</h3>
+                                                <p class="handwritten font-sm">"senyummu di foto ini masih sama seperti yang aku inget."</p>
+                                                <span class="heart-stamp">🌷</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Photo 6 -->
+                                <div class="polaroid-card" style="--rotation: 1deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 6">
+                                            </div>
+                                            <p class="polaroid-caption">acak tapi seru ⚡</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Random Moment</h3>
+                                                <p class="handwritten font-sm">"random, tapi berarti."</p>
+                                                <span class="heart-stamp">🧩</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Photo 7 -->
+                                <div class="polaroid-card" style="--rotation: -1deg;">
+                                    <div class="polaroid-inner">
+                                        <div class="polaroid-front">
+                                            <div class="polaroid-image-frame">
+                                                <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?q=80&w=600&auto=format&fit=crop" alt="Foto Kenangan 7">
+                                            </div>
+                                            <p class="polaroid-caption">tak terlupakan 🌅</p>
+                                        </div>
+                                        <div class="polaroid-back">
+                                            <div class="back-content">
+                                                <h3>Unforgettable</h3>
+                                                <p class="handwritten font-sm">"salah satu hari yang nggak pengen aku lupain."</p>
+                                                <span class="heart-stamp">🌻</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE: Moving Memories (Video Section) -->
+                    <div class="page-side back-side" data-page-index="4">
+                        <div class="glass-page-content flex-center-content text-center">
+                            <span class="tag">Moving Memories 🎬 • Hal 4</span>
+                            <h2 class="serif-title section-title">moving memories</h2>
+                            <p class="message-text">
+                                Beberapa kenangan rasanya lebih hidup kalau diputar ulang.
+                            </p>
+
+                            <!-- Retro Video Glass Screen Mockup -->
+                            <div class="retro-video-container" id="video-box">
+                                <div class="video-overlay-glare"></div>
+                                <canvas id="video-canvas"></canvas>
+                                <div class="video-controls">
+                                    <button class="video-play-btn" id="video-play-btn">
+                                        <i class="fa-solid fa-play"></i> Putar Kenangan
+                                    </button>
+                                </div>
+                                <div class="light-leak-effect" id="light-leak"></div>
+                            </div>
+                            
+                            <p class="handwritten font-sm text-center" style="margin-top: 15px;">
+                                "seperti pita film tua yang terus berputar..."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     SHEET 2: TIMELINE & GRADUATION SPECIAL
+                     ========================================== -->
+                <div class="paper-sheet" id="sheet-2">
+                    <!-- FRONT SIDE: Timeline "our story" -->
+                    <div class="page-side front-side" data-page-index="5">
+                        <div class="glass-page-content">
+                            <span class="tag">Our Story 🧶 • Hal 5</span>
+                            <h2 class="serif-title section-title text-center">our story</h2>
+                            <p class="section-desc text-center">Perjalanan kecil kita yang penuh warna dan makna.</p>
+                            
+                            <!-- Interactive Knitting Timeline -->
+                            <div class="knitting-timeline">
+                                <div class="timeline-thread"></div>
+                                
+                                <!-- Node 1 -->
+                                <div class="timeline-node" data-emoji="💬">
+                                    <div class="node-bullet"></div>
+                                    <div class="node-content">
+                                        <h3>Awal Kenal</h3>
+                                        <p>Awalnya cuma obrolan biasa. Tapi ternyata kamu jadi salah satu orang yang paling berkesan di hidupku.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2 -->
+                                <div class="timeline-node" data-emoji="🌟">
+                                    <div class="node-bullet"></div>
+                                    <div class="node-content">
+                                        <h3>Hari-Hari Random</h3>
+                                        <p>Kita pernah punya banyak moment sederhana yang ternyata sekarang jadi sesuatu yang dirindukan.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3 -->
+                                <div class="timeline-node" data-emoji="🤍">
+                                    <div class="node-bullet"></div>
+                                    <div class="node-content">
+                                        <h3>Moment Bahagia</h3>
+                                        <p>Aku selalu suka lihat kamu bahagia. Sesimpel itu.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4 -->
+                                <div class="timeline-node" data-emoji="🍂">
+                                    <div class="node-bullet"></div>
+                                    <div class="node-content">
+                                        <h3>Hari Sulit</h3>
+                                        <p>Walaupun nggak semua cerita kita sempurna, aku tetap bersyukur pernah ada di beberapa bagian hidupmu.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE: Special Graduation Page -->
+                    <div class="page-side back-side" data-page-index="6">
+                        <div class="glass-page-content flex-center-content text-center">
+                            <span class="tag">Graduation Celebration 🎓 • Hal 6</span>
+                            <h2 class="serif-title section-title">you really made it</h2>
+                            <div class="divider"></div>
+                            
+                            <div class="graduation-banner">
+                                <span class="grad-emoji">🎓</span>
+                                <h3 class="serif-title">Selamat yaa 🤍</h3>
+                            </div>
+                            
+                            <p class="message-text highlighted">
+                                Setelah semua perjuangan panjang itu, akhirnya kamu sampai juga di titik ini.
+                            </p>
+                            
+                            <div class="grad-message-box">
+                                <p class="message-text">
+                                    Aku harap hari wisudamu dipenuhi banyak senyum, banyak rasa bangga, dan banyak orang yang sayang sama kamu. Karena kamu memang pantas mendapatkan semua hal baik itu.
+                                </p>
+                                <p class="message-text" style="font-weight: 600; color: var(--accent-rose);">
+                                    Dan untuk semua versi dirimu yang pernah capek, nangis, stres, atau pengen nyerah… lihat sekarang. Kamu berhasil sampai sejauh ini.
+                                </p>
+                            </div>
+
+                            <!-- Interactive Graduation Cap Throw -->
+                            <div class="toga-throw-container">
+                                <button class="toga-btn" id="toga-btn">
+                                    <i class="fa-solid fa-graduation-cap"></i> Lempar Toga & Konfeti! 🎓✨
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     SHEET 3: SOMETHING HONEST & THINGS I STILL LIKE
+                     ========================================== -->
+                <div class="paper-sheet" id="sheet-3">
+                    <!-- FRONT SIDE: Something Honest -->
+                    <div class="page-side front-side" data-page-index="7">
+                        <div class="glass-page-content flex-center-content text-center">
+                            <span class="tag">Honest Letter ✉️ • Hal 7</span>
+                            <h2 class="serif-title section-title">something honest</h2>
+                            <p class="section-desc">Menyampaikan pesan yang terpendam melalui cara paling tenang.</p>
+
+                            <!-- Interactive Fold-Out Wax Sealed Letter -->
+                            <div class="folded-letter-container" id="honest-letter-box">
+                                <div class="folded-letter-seal" id="honest-seal">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                    <span>Buka Surat Jujur ✉️</span>
+                                </div>
+                                <div class="folded-letter-body" id="honest-body">
+                                    <h3 class="serif-title">Untukmu...</h3>
+                                    <p class="handwritten font-sm text-left">
+                                        Aku sempat bingung mau masukin bagian ini atau nggak. Tapi kalau dipikir-pikir, mungkin ini satu-satunya kesempatan aku buat jujur lewat cara yang tenang.
+                                    </p>
+                                    <p class="handwritten font-sm text-left" style="color: #8c2a38; font-weight: 600; margin: 10px 0;">
+                                        Sampai sekarang… aku masih peduli sama kamu. Dan mungkin, sebagian perasaanku juga masih tetap tinggal.
+                                    </p>
+                                    <p class="handwritten font-sm text-left">
+                                        Aku nggak bikin semua ini untuk bikin kamu nggak enak atau berharap sesuatu harus kembali seperti dulu. Aku cuma pengen kamu tahu kalau kamu masih jadi seseorang yang spesial buat aku.
+                                    </p>
+                                    <button class="close-letter-btn" id="close-letter-btn">Tutup Surat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE: Things I Still Like About You -->
+                    <div class="page-side back-side" data-page-index="8">
+                        <div class="glass-page-content">
+                            <span class="tag">Secret List 📝 • Hal 8</span>
+                            <h2 class="serif-title section-title text-center">things i still like about you</h2>
+                            <p class="section-desc text-center">Hal-hal kecil tentang kamu yang ternyata selalu berharga di mataku.</p>
+                            
+                            <!-- Interactive Sticky Notes Board -->
+                            <div class="sticky-board">
+                                <div class="sticky-note" style="--note-bg: #f9f5eb; --rotation: -2deg;">
+                                    <div class="sticky-pin">📍</div>
+                                    <p class="handwritten">cara kamu ketawa</p>
+                                </div>
+                                <div class="sticky-note" style="--note-bg: #faf0e6; --rotation: 3deg;">
+                                    <div class="sticky-pin">📍</div>
+                                    <p class="handwritten">cara kamu cerita hal random</p>
+                                </div>
+                                <div class="sticky-note" style="--note-bg: #f5f5dc; --rotation: -1deg;">
+                                    <div class="sticky-pin">📍</div>
+                                    <p class="handwritten">cara kamu berusaha terlihat kuat</p>
+                                </div>
+                                <div class="sticky-note" style="--note-bg: #fefcf3; --rotation: 2deg;">
+                                    <div class="sticky-pin">📍</div>
+                                    <p class="handwritten">cara kamu peduli sama orang lain</p>
+                                </div>
+                                <div class="sticky-note" style="--note-bg: #faeed1; --rotation: -3deg;">
+                                    <div class="sticky-pin">📍</div>
+                                    <p class="handwritten">cara kamu jadi diri sendiri</p>
+                                </div>
+                                <div class="sticky-note text-center" style="--note-bg: #fbf9f6; --rotation: 1deg; grid-column: span 2;">
+                                    <div class="sticky-pin">❤️</div>
+                                    <p class="handwritten" style="font-weight: 700; color: #8c2a38;">
+                                        dan banyak hal kecil lain yang mungkin bahkan nggak kamu sadari.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     SHEET 4: HIDDEN MESSAGE & PLAYLIST
+                     ========================================== -->
+                <div class="paper-sheet" id="sheet-4">
+                    <!-- FRONT SIDE: Hidden Message Button & Modal Trigger -->
+                    <div class="page-side front-side" data-page-index="9">
+                        <div class="glass-page-content flex-center-content text-center">
+                            <span class="tag">Final Secret 🔒 • Hal 9</span>
+                            <h2 class="serif-title section-title">one last thing</h2>
+                            <p class="section-desc">Ketuk tombol di bawah ini jika kamu siap membaca sebuah pesan terakhir...</p>
+                            
+                            <!-- Elegant Secret Letter Button -->
+                            <div class="hidden-lock-container">
+                                <button class="lock-btn" id="lock-btn">
+                                    <i class="fa-solid fa-heart-pulse"></i> one last thing
+                                </button>
+                            </div>
+                            
+                            <!-- Fullscreen Cinematic Credit Letters Box (Initially Hidden via opacity) -->
+                            <div class="cinematic-overlay" id="cinematic-overlay">
+                                <div class="cinematic-content text-center">
+                                    <h2 class="serif-title">one last thing...</h2>
+                                    <div class="cinematic-scroll-box">
+                                        <p class="handwritten font-sm">
+                                            Kalau suatu hari nanti kamu baca ini lagi…<br>
+                                            aku harap kamu tahu kalau pernah ada seseorang yang benar-benar tulus sayang sama kamu.
+                                        </p>
+                                        <br>
+                                        <p class="handwritten font-sm">
+                                            Dan walaupun sekarang semuanya berubah,<br>
+                                            rasa bangga dan rasa peduli itu ternyata belum ikut hilang.
+                                        </p>
+                                        <br><br>
+                                        <p class="handwritten font-sm highlighted-text">
+                                            Terima kasih ya,<br>
+                                            karena pernah jadi bagian penting di hidupku.
+                                        </p>
+                                    </div>
+                                    <button class="close-cinematic-btn" id="close-cinematic-btn">Kembali ke Halaman</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE: Playlist Section (Hindia's songs) -->
+                    <div class="page-side back-side" data-page-index="10">
+                        <div class="glass-page-content">
+                            <span class="tag">Playlist Section 🎵 • Hal 10</span>
+                            <h2 class="serif-title section-title text-center">songs that remind me of you</h2>
+                            <p class="section-desc text-center">Beberapa lagu ternyata bisa nyimpen perasaan lebih baik daripada kata-kata.</p>
+                            
+                            <!-- Interactive Vinyl Vinyl Player player -->
+                            <div class="vinyl-player-hub">
+                                <div class="vinyl-record-wrapper">
+                                    <div class="vinyl-record" id="vinyl-disc">
+                                        <div class="vinyl-label-center">
+                                            <div class="vinyl-label-art">H</div>
+                                        </div>
+                                    </div>
+                                    <!-- Mechanical Needle Arm -->
+                                    <div class="vinyl-needle" id="vinyl-needle"></div>
+                                </div>
+
+                                <!-- Track Selector Playlist -->
+                                <div class="vinyl-playlist">
+                                    <div class="track-item active" data-track="secukupnya" data-audio="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" data-lyric="&ldquo;Semua yang sirna kan kembali, semua yang hancur kan terobati...&rdquo;">
+                                        <i class="fa-solid fa-play"></i> Secukupnya
+                                    </div>
+                                    <div class="track-item" data-track="rumah-ke-rumah" data-audio="https://assets.mixkit.co/music/preview/mixkit-tender-love-155.mp3" data-lyric="&ldquo;Jika kau kelak mendengarkan ini, aku hanya ingin kau bahagia...&rdquo;">
+                                        <i class="fa-solid fa-play"></i> Rumah Ke Rumah
+                                    </div>
+                                    <div class="track-item" data-track="evaluasi" data-audio="https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3" data-lyric="&ldquo;Perjalanan yang hebat, tidak perlu terburu-buru... kau berharga.&rdquo;">
+                                        <i class="fa-solid fa-play"></i> Evaluasi
+                                    </div>
+                                    <div class="track-item" data-track="cincin" data-audio="https://assets.mixkit.co/music/preview/mixkit-serene-view-1100.mp3" data-lyric="&ldquo;Kita saling mengagumi, walau jalan tak lagi seiring...&rdquo;">
+                                        <i class="fa-solid fa-play"></i> Cincin
+                                    </div>
+                                    <div class="track-item" data-track="apapun" data-audio="https://assets.mixkit.co/music/preview/mixkit-warm-light-1111.mp3" data-lyric="&ldquo;Apapun yang terjadi, ku kan tetap bangga padamu...&rdquo;">
+                                        <i class="fa-solid fa-play"></i> Apapun yang Terjadi
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Dynamic Typewriter Lyrics Screen -->
+                            <div class="vinyl-lyrics-screen">
+                                <p class="handwritten text-center" id="vinyl-lyrics-text">"Semua yang sirna kan kembali, semua yang hancur kan terobati..."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     SHEET 5: PENUTUP & HALAMAN TERAKHIR
+                     ========================================== -->
+                <div class="paper-sheet" id="sheet-5">
+                    <!-- FRONT SIDE: Penutup "thank you" -->
+                    <div class="page-side front-side" data-page-index="11">
+                        <div class="glass-page-content flex-center-content text-center">
+                            <span class="tag">Thank You 🤍 • Hal 11</span>
+                            <h2 class="serif-title section-title">thank you</h2>
+                            <div class="divider"></div>
+                            
+                            <div class="thank-you-box">
+                                <p class="message-text">
+                                    Terima kasih untuk semua cerita yang pernah kita punya.
+                                </p>
+                                <p class="message-textHighlighted message-text highlighted">
+                                    Terima kasih untuk semua tawa, moment random, obrolan kecil, dan kenangan yang pernah kita lewati.
+                                </p>
+                                <p class="message-text">
+                                    Mungkin sekarang semuanya udah berbeda. Tapi jujur, aku tetap bersyukur pernah kenal kamu.
+                                </p>
+                            </div>
+                            
+                            <p class="final-wish text-center">
+                                Dan sekali lagi…<br>
+                                <strong>selamat wisuda ya 🤍</strong>
+                            </p>
+                            
+                            <p class="message-text font-sm" style="margin-top: 10px;">
+                                Semoga setelah ini hidupmu dipenuhi banyak hal baik, banyak kebahagiaan, dan orang-orang yang selalu menghargai kamu.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE: Halaman Terakhir Scrapbook -->
+                    <div class="page-side back-side" data-page-index="12">
+                        <div class="glass-page-content text-center flex-center-content final-layout">
+                            <div class="congrats-seal">🎓🌸</div>
+                            <h2 class="serif-title main-heading">The End?</h2>
+                            <p class="final-intro">Halaman scrapbook fisik ini mungkin sudah selesai di sini.</p>
+                            
+                            <div class="final-confession text-center" style="margin: 20px 0;">
+                                <p class="handwritten font-sm" style="font-weight: 700;">
+                                    Mungkin scrapbook ini selesai di halaman terakhir.<br>
+                                    Tapi beberapa kenangan ternyata nggak benar-benar selesai.
+                                </p>
+                            </div>
+                            
+                            <div class="silent-proud-box">
+                                <button class="heart-shower-btn" id="heart-btn">
+                                    <i class="fa-solid fa-heart"></i> Tekan dengan tulus
+                                </button>
+                                <br><br>
+                                <p class="handwritten font-sm text-center" style="color: #8c2a38; font-weight: 700; font-size: 1.45rem !important;">
+                                    “you’ll always be one of my favorite stories.”
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- END BOOK -->
+        </div> <!-- END BINDER CONTAINER -->
+
+        <!-- Book Navigation Buttons -->
+        <button class="book-nav-btn next-btn" id="next-btn" title="Halaman Selanjutnya">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+    </div> <!-- END PERSPECTIVE WRAPPER -->
+
+    <!-- Mobile Screen Indicator / Swipe Hint -->
+    <div class="mobile-swipe-hint">
+        <span><i class="fa-solid fa-angles-left"></i> Geser halaman untuk membalik <i class="fa-solid fa-angles-right"></i></span>
+        <div class="mobile-dots" id="mobile-dots">
+            <!-- Dynamically populated page dots -->
+        </div>
+    </div>
+
+    <!-- Configuration Modal ( Easter Egg Name change on stamp click ) -->
+    <div class="modal" id="config-modal">
+        <div class="modal-content glass-card">
+            <h3>Ubah Data Scrapbook ⚙️</h3>
+            <p>Silakan isi data di bawah ini untuk menyesuaikan nama penerima secara instan!</p>
+            <div class="form-group">
+                <label for="input-name">Nama Penerima Scrapbook:</label>
+                <input type="text" id="input-name" placeholder="Misal: Acha, Rian, Dara">
+            </div>
+            <div class="form-group">
+                <label for="input-year">Tahun Kelulusan:</label>
+                <input type="text" id="input-year" placeholder="Misal: 2026">
+            </div>
+            <button class="save-btn" id="save-config">Terapkan Perubahan ✨</button>
+            <button class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <!-- Heart Shower Effect Container -->
+    <div id="heart-shower-container"></div>
+
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>
