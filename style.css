@@ -1358,12 +1358,16 @@ body {
     }
     
     .scrapbook-perspective {
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
+        width: 100vw;
+        height: 100dvh;
+        max-width: 100vw;
         padding: 0;
         gap: 0;
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        perspective: none; /* Disable perspective on mobile to avoid zoom issues */
     }
 
     .book-binder-container {
@@ -1443,13 +1447,14 @@ body {
         background-color: var(--bg-base);
         background-image: var(--bg-gradient);
         color: var(--text-primary);
-        padding: 25px 20px 80px 20px; /* buffer at bottom for nav indicator */
+        padding: 40px 25px 90px 25px; /* adjust padding for better mobile fit */
         display: flex;
         flex-direction: column;
         height: 100% !important;
         width: 100% !important;
         position: relative;
         z-index: 5;
+        overflow-x: hidden; /* prevent horizontal scroll within page */
     }
 
     /* Recolor fonts inside pages to light color mode since background changed to dark base on mobile */
