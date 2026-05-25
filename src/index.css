@@ -27,19 +27,21 @@ body {
 
 /* Nebula Background - Optimized for mobile */
 .nebula-1 {
-  @apply fixed w-[400px] h-[400px] md:w-[800px] md:h-[800px] rounded-full blur-[60px] md:blur-[120px] pointer-events-none z-0 opacity-40;
+  @apply fixed w-[300px] h-[300px] md:w-[800px] md:h-[800px] rounded-full blur-[40px] md:blur-[120px] pointer-events-none z-0 opacity-40;
   background: radial-gradient(circle, var(--nebula-purple) 0%, transparent 70%);
-  top: -100px;
-  left: -100px;
+  top: -50px;
+  left: -50px;
   animation: float-nebula 20s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 .nebula-2 {
-  @apply fixed w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full blur-[50px] md:blur-[100px] pointer-events-none z-0 opacity-30;
+  @apply fixed w-[250px] h-[250px] md:w-[600px] md:h-[600px] rounded-full blur-[35px] md:blur-[100px] pointer-events-none z-0 opacity-30;
   background: radial-gradient(circle, var(--nebula-blue) 0%, transparent 70%);
-  bottom: -50px;
-  right: -50px;
+  bottom: -30px;
+  right: -30px;
   animation: float-nebula 25s ease-in-out infinite alternate-reverse;
+  will-change: transform;
 }
 
 @keyframes float-nebula {

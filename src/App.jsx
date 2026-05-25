@@ -163,7 +163,7 @@ const PhotoCard = ({ photo, index }) => {
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{ transformStyle: "preserve-3d", willChange: "transform" }}
         className="w-full h-full relative"
       >
         {/* Front Side */}
@@ -177,6 +177,8 @@ const PhotoCard = ({ photo, index }) => {
                 src={photo.url} 
                 className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]" 
                 alt="Memory"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 flex items-end p-3">
                 <Sparkles className="w-4 h-4 text-amber-200" />
@@ -215,7 +217,7 @@ const App = () => {
   const [isLetterOpen, setIsLetterOpen] = useState(false);
   const [isSecretRevealed, setIsSecretRevealed] = useState(false);
   const [hearts, setHearts] = useState([]);
-  const [starCount, setStarCount] = useState(40);
+  const [starCount, setStarCount] = useState(30);
   
   // Wishlist State with LocalStorage Persistence
   const [wishlist, setWishlist] = useState(() => {
@@ -240,7 +242,7 @@ const App = () => {
   const totalPages = PAGES.length;
 
   useEffect(() => {
-    if (window.innerWidth < 768) setStarCount(15);
+    if (window.innerWidth < 768) setStarCount(10);
   }, []);
 
   const paginate = (dir) => {
@@ -253,7 +255,8 @@ const App = () => {
   };
 
   const createHeartShower = () => {
-    const newHearts = Array.from({ length: 30 }).map((_, i) => ({
+    const count = window.innerWidth < 768 ? 15 : 30;
+    const newHearts = Array.from({ length: count }).map((_, i) => ({
       id: Date.now() + i,
       left: Math.random() * 100,
       size: Math.random() * 20 + 15,
@@ -316,7 +319,7 @@ const App = () => {
           ref={audioRef} 
           src="/Rumah Ke Rumah.mp3" 
           loop 
-          preload="auto"
+          preload="metadata"
         />
 
       {/* Aesthetic Background Elements */}
@@ -367,7 +370,8 @@ const App = () => {
             className="absolute w-1 h-1 bg-white rounded-full blur-[0.5px]"
             style={{ 
               left: `${Math.random() * 100}%`, 
-              top: `${Math.random() * 100}%` 
+              top: `${Math.random() * 100}%`,
+              willChange: "opacity, transform"
             }}
           />
         ))}
@@ -463,7 +467,8 @@ const App = () => {
                 x: window.innerWidth < 768 ? -50 : -100, 
                 scale: 0.98 
               }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              style={{ willChange: "transform, opacity" }}
               className="w-full h-full glass-card p-10 md:p-16 flex flex-col items-center scrollbar-hide touch-pan-y"
             >
               <div className="w-full h-full flex flex-col items-center relative overflow-y-auto scrollbar-hide">
