@@ -85,12 +85,12 @@ const PAGES = [
     title: 'our wishlist',
     desc: 'Beberapa hal yang pengen aku lakuin atau tempat yang pengen aku kunjungi bareng kamu.',
     items: [
-      { text: 'Nonton senja di pinggir pantai', checked: false },
-      { text: 'Makan es krim favorit bareng', checked: true },
-      { text: 'Jalan-jalan ke toko buku seharian', checked: false },
-      { text: 'Foto box lucu bareng lagi', checked: true },
-      { text: 'Keliling kota naik motor malam hari', checked: false },
-      { text: 'Masak bareng (walaupun berantakan)', checked: false },
+      { text: 'Menemukan hobi baru yang bikin happy', checked: false },
+      { text: 'Solo traveling ke tempat impian', checked: false },
+      { text: 'Sukses di karir/pekerjaan pertama', checked: false },
+      { text: 'Tetap jadi orang yang baik dan tulus', checked: true },
+      { text: 'Lebih banyak waktu untuk self-care', checked: false },
+      { text: 'Mewujudkan mimpi yang selama ini tertunda', checked: false },
     ]
   },
   {
