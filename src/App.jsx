@@ -97,9 +97,17 @@ const PAGES = [
     title: 'songs that remind me of you',
     desc: 'Beberapa lagu ternyata bisa nyimpen perasaan lebih baik daripada kata-kata.',
     tracks: [
-      { title: 'Secukupnya', artist: 'Hindia', audio: '/Hindia - Secukupnya Lyric Video - OST. Nanti Kita Cerita Tentang Hari Ini.mp3' },
       { title: 'Rumah Ke Rumah', artist: 'Hindia', audio: '/Rumah Ke Rumah.mp3' },
+      { title: 'Secukupnya', artist: 'Hindia', audio: '/Hindia - Secukupnya Lyric Video - OST. Nanti Kita Cerita Tentang Hari Ini.mp3' },
       { title: 'Cincin', artist: 'Hindia', audio: '/Hindia - Cincin Official Lyric Video.mp3' },
+      { title: 'Membasuh', artist: 'Hindia', audio: '/Hindia - Membasuh ft. Rara Sekar Official Music Video.mp3' },
+      { title: 'Ramai Sepi Bersama', artist: 'Hindia', audio: '/Ramai Sepi Bersama.mp3' },
+      { title: 'Untuk Apa / Untuk Apa?', artist: 'Hindia', audio: '/Hindia - Untuk Apa _ Untuk Apa_ Official Music Video.mp3' },
+      { title: 'Kita ke Sana', artist: 'Hindia', audio: '/Hindia - Kita ke Sana Official Lyric Video.mp3' },
+      { title: 'Berdansalah, Karir Tak Ada Artinya', artist: 'Hindia', audio: '/Hindia - Berdansalah, Karir Tak Ada Artinya Official Lyric Video.mp3' },
+      { title: 'Dehidrasi', artist: 'Hindia', audio: '/Hindia - Dehidrasi ft. Petra Sihombing Official Music Video.mp3' },
+      { title: 'Bayangkan Jika Kita Tidak Menyerah', artist: 'Hindia', audio: '/Hindia - Bayangkan Jika Kita Tidak Menyerah Official Lyric Video.mp3' },
+      { title: 'Iya...Sebentar', artist: 'Hindia', audio: '/Hindia - Iya...Sebentar Official Lyric Video.mp3' },
     ]
   },
   {
@@ -224,6 +232,12 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    if (currentPage === PAGES.findIndex(p => p.type === 'playlist')) {
+      // No action needed for now, but we could auto-play a specific track
+    }
+  }, [currentPage]);
+
   return (
     <div className="fixed inset-0 bg-[#09090b] text-white font-sans overflow-hidden touch-none select-none">
       {/* 
@@ -232,11 +246,11 @@ const App = () => {
         and put the file in the 'public' folder.
       */}
       <audio 
-         ref={audioRef} 
-         src="/Hindia - Secukupnya Lyric Video - OST. Nanti Kita Cerita Tentang Hari Ini.mp3" 
-         loop 
-         preload="auto"
-       />
+           ref={audioRef} 
+           src="/Rumah Ke Rumah.mp3" 
+           loop 
+           preload="auto"
+         />
 
       {/* Aesthetic Background Elements */}
       <div className="nebula-1" />
