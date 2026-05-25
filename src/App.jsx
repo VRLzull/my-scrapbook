@@ -112,6 +112,66 @@ const PAGES = [
   }
 ];
 
+const PhotoCard = ({ photo, index }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div 
+      className="relative w-full aspect-square cursor-pointer"
+      style={{ perspective: "1000px" }}
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsFlipped(!isFlipped);
+      }}
+    >
+      <motion.div
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="w-full h-full relative"
+      >
+        {/* Front Side */}
+        <div 
+          className="absolute inset-0 backface-hidden"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <div className="w-full h-full bg-white/5 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-2xl flex flex-col">
+            <div className="flex-1 rounded-xl overflow-hidden relative">
+              <img 
+                src={photo.url} 
+                className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]" 
+                alt="Memory"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 flex items-end p-3">
+                <Sparkles className="w-4 h-4 text-amber-200" />
+              </div>
+            </div>
+            <p className="font-handwritten text-gray-400 text-[10px] text-center mt-2 italic">klik untuk lihat pesan</p>
+          </div>
+        </div>
+
+        {/* Back Side */}
+        <div 
+          className="absolute inset-0 backface-hidden"
+          style={{ 
+            backfaceVisibility: "hidden", 
+            transform: "rotateY(180deg)" 
+          }}
+        >
+          <div className="w-full h-full bg-gradient-to-br from-amber-50/10 to-pink-50/10 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-2xl flex flex-col items-center justify-center text-center space-y-4">
+            <Heart className="w-8 h-8 text-pink-500/40 fill-pink-500/20" />
+            <p className="font-handwritten text-amber-100 text-lg leading-relaxed">
+              {photo.caption}
+            </p>
+            <div className="w-8 h-[1px] bg-white/20" />
+            <p className="text-[8px] uppercase tracking-widest text-white/30 font-bold">Memory Card #{index + 1}</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -156,7 +216,17 @@ const App = () => {
 
   return (
     <div className="fixed inset-0 bg-[#09090b] text-white font-sans overflow-hidden touch-none select-none">
-      <audio ref={audioRef} src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" loop />
+      {/* 
+        Note: If audio doesn't play, it might be due to browser autoplay policies.
+        You can replace the src with a local file like: src="/music.mp3" 
+        and put the file in the 'public' folder.
+      */}
+      <audio 
+        ref={audioRef} 
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
+        loop 
+        preload="auto"
+      />
 
       {/* Aesthetic Background Elements */}
       <div className="nebula-1" />
@@ -212,14 +282,28 @@ const App = () => {
       </div>
 
       {/* Floating Music Disc */}
-      <motion.button 
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={toggleMusic}
-        className={`fixed bottom-8 right-8 z-50 w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl transition-colors ${isPlaying ? 'text-pink-400' : 'text-amber-200'}`}
-      >
-        <Disc className={`w-8 h-8 ${isPlaying ? 'animate-spin-slow' : ''}`} />
-      </motion.button>
+      <div className="fixed bottom-8 right-8 z-50 flex flex-col items-center gap-2">
+        <AnimatePresence>
+          {!isPlaying && (
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="text-[10px] text-amber-200/60 font-bold uppercase tracking-widest bg-black/40 px-3 py-1 rounded-full backdrop-blur-md border border-white/10"
+            >
+              Play Music
+            </motion.span>
+          )}
+        </AnimatePresence>
+        <motion.button 
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleMusic}
+          className={`w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-2xl transition-colors ${isPlaying ? 'text-pink-400' : 'text-amber-200'}`}
+        >
+          <Disc className={`w-8 h-8 ${isPlaying ? 'animate-spin-slow' : ''}`} />
+        </motion.button>
+      </div>
 
       {/* Main Experience Container */}
       <div className="w-full h-full flex items-center justify-center p-6 relative z-10">
@@ -315,24 +399,9 @@ const App = () => {
                         <h2 className="text-4xl md:text-5xl font-serif text-amber-100 lowercase text-glow-gold">{PAGES[currentPage].title}</h2>
                         {PAGES[currentPage].desc && <p className="text-gray-400 text-xs italic px-6 leading-relaxed">{PAGES[currentPage].desc}</p>}
                       </div>
-                      <div className={`grid ${PAGES[currentPage].photos.length > 3 ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-6`}>
+                      <div className={`grid ${PAGES[currentPage].photos.length > 3 ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-6 w-full px-2`}>
                         {PAGES[currentPage].photos.map((photo, i) => (
-                          <motion.div 
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.1 }}
-                            whileHover={{ scale: 1.02, rotate: i % 2 === 0 ? -1 : 1 }}
-                            className="bg-white/5 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-2xl group cursor-pointer"
-                          >
-                            <div className="aspect-square rounded-xl overflow-hidden mb-3 relative">
-                              <img src={photo.url} className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                                <Sparkles className="w-4 h-4 text-amber-200" />
-                              </div>
-                            </div>
-                            <p className="font-handwritten text-gray-300 text-xs text-center leading-snug px-2">{photo.caption}</p>
-                          </motion.div>
+                          <PhotoCard key={i} photo={photo} index={i} />
                         ))}
                       </div>
                     </div>

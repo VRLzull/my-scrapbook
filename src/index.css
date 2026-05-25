@@ -67,3 +67,8 @@ body {
 .text-glow-rose {
   text-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
 }
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
