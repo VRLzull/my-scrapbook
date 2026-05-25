@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --bg-dark: #09090b;
-  --nebula-purple: rgba(139, 92, 246, 0.15);
+  --bg-dark: #020617; /* Deeper Navy Black */
+  --nebula-purple: rgba(30, 58, 138, 0.2); /* Navy Blue */
   --nebula-blue: rgba(59, 130, 246, 0.15);
-  --nebula-pink: rgba(236, 72, 153, 0.15);
+  --nebula-cyan: rgba(6, 182, 212, 0.15);
 }
 
 body {
-  @apply bg-black text-white font-sans antialiased overflow-hidden;
+  @apply bg-slate-950 text-white font-sans antialiased overflow-hidden;
   background-color: var(--bg-dark);
   height: 100vh;
   height: 100dvh;
@@ -66,6 +66,10 @@ body {
 
 .text-glow-rose {
   text-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
 }
 
 .backface-hidden {

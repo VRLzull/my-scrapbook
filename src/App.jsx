@@ -166,9 +166,9 @@ const PhotoCard = ({ photo, index }) => {
             transform: "rotateY(180deg)" 
           }}
         >
-          <div className="w-full h-full bg-gradient-to-br from-amber-50/10 to-pink-50/10 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-2xl flex flex-col items-center justify-center text-center space-y-4">
-            <Heart className="w-8 h-8 text-pink-500/40 fill-pink-500/20" />
-            <p className="font-handwritten text-amber-100 text-lg leading-relaxed">
+          <div className="w-full h-full bg-gradient-to-br from-blue-50/10 to-cyan-50/10 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-2xl flex flex-col items-center justify-center text-center space-y-4">
+            <Heart className="w-8 h-8 text-cyan-500/40 fill-cyan-500/20" />
+            <p className="font-handwritten text-blue-100 text-lg leading-relaxed">
               {photo.caption}
             </p>
             <div className="w-8 h-[1px] bg-white/20" />
@@ -239,22 +239,48 @@ const App = () => {
   }, [currentPage]);
 
   return (
-    <div className="fixed inset-0 bg-[#09090b] text-white font-sans overflow-hidden touch-none select-none">
+    <div className="fixed inset-0 bg-[#020617] text-white font-sans overflow-hidden touch-none select-none">
       {/* 
         Note: If audio doesn't play, it might be due to browser autoplay policies.
         You can replace the src with a local file like: src="/music.mp3" 
         and put the file in the 'public' folder.
       */}
       <audio 
-           ref={audioRef} 
-           src="/Rumah Ke Rumah.mp3" 
-           loop 
-           preload="auto"
-         />
+          ref={audioRef} 
+          src="/Rumah Ke Rumah.mp3" 
+          loop 
+          preload="auto"
+        />
 
       {/* Aesthetic Background Elements */}
       <div className="nebula-1" />
       <div className="nebula-2" />
+      
+      {/* Duck Characters Layer */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <motion.div
+          animate={{ 
+            x: [0, 20, 0], 
+            y: [0, -10, 0],
+            rotate: [0, 5, 0] 
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 right-[10%] text-4xl opacity-40 grayscale-[0.3]"
+        >
+          🦆
+        </motion.div>
+        <motion.div
+          animate={{ 
+            x: [0, -15, 0], 
+            y: [0, 15, 0],
+            rotate: [0, -5, 0] 
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-40 left-[5%] text-3xl opacity-30 grayscale-[0.5]"
+        >
+          🦆
+        </motion.div>
+      </div>
       
       {/* Floating Stars/Particles */}
       <div className="absolute inset-0 pointer-events-none">
@@ -379,11 +405,12 @@ const App = () => {
                 <motion.div 
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-10"
+                  className="mb-10 flex items-center gap-3"
                 >
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-pink-400/80 font-bold px-5 py-2 rounded-full border border-pink-500/20 bg-pink-500/5 backdrop-blur-sm">
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-cyan-400/80 font-bold px-5 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-sm">
                     {PAGES[currentPage].badge || 'Memory Lane'}
                   </span>
+                  {currentPage % 3 === 0 && <span className="text-xl animate-bounce">🦆</span>}
                 </motion.div>
 
                 {/* Page Content Switcher */}
@@ -484,15 +511,15 @@ const App = () => {
                         <Sparkles className="absolute -top-4 -right-4 w-10 h-10 text-pink-400 animate-pulse" />
                       </motion.div>
                       <div className="space-y-4">
-                        <h2 className="text-6xl font-serif text-amber-100 lowercase text-glow-gold tracking-tighter">{PAGES[currentPage].title}</h2>
-                        <p className="text-pink-300 font-bold italic text-xl tracking-widest uppercase">{PAGES[currentPage].badge}</p>
+                        <h2 className="text-5xl font-serif text-blue-100 lowercase text-glow-blue">{PAGES[currentPage].title}</h2>
+                        <p className="text-cyan-300 font-bold italic text-xl tracking-widest uppercase">{PAGES[currentPage].badge}</p>
                       </div>
                       <div className="space-y-8 max-w-[360px]">
                         <p className="text-gray-100 text-sm font-medium leading-relaxed px-6 py-4 rounded-3xl bg-white/5 border border-white/10 shadow-xl backdrop-blur-md italic">
                           "{PAGES[currentPage].message}"
                         </p>
                         <p className="text-gray-400 text-xs leading-relaxed px-4">{PAGES[currentPage].subMessage}</p>
-                        <p className="text-pink-300/40 text-[10px] italic leading-relaxed px-6 uppercase tracking-widest">{PAGES[currentPage].extra}</p>
+                        <p className="text-cyan-300/40 text-[10px] italic leading-relaxed px-6 uppercase tracking-widest">{PAGES[currentPage].extra}</p>
                       </div>
                     </div>
                   )}
@@ -512,12 +539,12 @@ const App = () => {
                                 exit={{ y: 0, scale: 0.8, opacity: 0 }}
                                 className="absolute inset-2 bg-white rounded-3xl p-8 text-left shadow-2xl z-20 border border-gray-200 overflow-y-auto max-h-[280px]"
                               >
-                                <h4 className="font-serif text-pink-500 text-sm font-bold mb-4 uppercase tracking-widest">A Little Letter...</h4>
+                                <h4 className="font-serif text-cyan-500 text-sm font-bold mb-4 uppercase tracking-widest">A Little Letter...</h4>
                                 <p className="font-handwritten text-gray-800 text-[15px] leading-relaxed whitespace-pre-line">
                                   {PAGES[currentPage].content}
                                 </p>
                                 <div className="mt-8 pt-6 border-t border-gray-100 text-right">
-                                   <p className="font-handwritten text-pink-500 text-sm italic">with love, someone who cares ✨</p>
+                                   <p className="font-handwritten text-cyan-500 text-sm italic">with love, someone who cares ✨</p>
                                 </div>
                               </motion.div>
                             )}
@@ -534,7 +561,7 @@ const App = () => {
 
                   {PAGES[currentPage].type === 'list' && (
                     <div className="w-full space-y-12 flex-1">
-                      <h2 className="text-5xl font-serif text-amber-100 text-center lowercase text-glow-gold tracking-tight">{PAGES[currentPage].title}</h2>
+                      <h2 className="text-5xl font-serif text-blue-100 text-center lowercase text-glow-blue tracking-tight">{PAGES[currentPage].title}</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-4">
                          {PAGES[currentPage].items.map((item, i) => (
                            <motion.div 
@@ -545,14 +572,14 @@ const App = () => {
                              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.08)" }}
                              className="p-5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md flex items-center gap-4 text-left shadow-lg group"
                            >
-                             <div className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
+                             <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
                                <Heart className="w-4 h-4 fill-current" />
                              </div>
                              <p className="font-handwritten text-gray-200 text-sm italic">{item}</p>
                            </motion.div>
                          ))}
-                         <motion.div className="md:col-span-2 p-6 bg-pink-500/5 rounded-3xl border border-pink-500/20 shadow-inner mt-4">
-                            <p className="font-handwritten text-pink-300 text-lg text-center leading-relaxed italic">{PAGES[currentPage].footer}</p>
+                         <motion.div className="md:col-span-2 p-6 bg-cyan-500/5 rounded-3xl border border-cyan-500/20 shadow-inner mt-4">
+                            <p className="font-handwritten text-cyan-300 text-lg text-center leading-relaxed italic">{PAGES[currentPage].footer}</p>
                          </motion.div>
                       </div>
                     </div>
@@ -586,14 +613,14 @@ const App = () => {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             className="space-y-10 bg-white/5 p-10 rounded-[3rem] shadow-2xl border border-white/10 backdrop-blur-2xl relative max-w-sm"
                           >
-                             <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#09090b] rounded-full border border-white/20 flex items-center justify-center shadow-2xl">
-                                <Heart className="w-7 h-7 text-pink-500 fill-pink-500" />
+                             <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#020617] rounded-full border border-white/20 flex items-center justify-center shadow-2xl">
+                                <Heart className="w-7 h-7 text-cyan-500 fill-cyan-500" />
                              </div>
                              <p className="font-handwritten text-xl text-gray-200 leading-relaxed italic whitespace-pre-line tracking-wide">
                                {PAGES[currentPage].message}
                              </p>
                              <div className="w-16 h-[1px] bg-white/10 mx-auto" />
-                             <button onClick={() => setIsSecretRevealed(false)} className="text-[10px] text-pink-400 font-bold uppercase tracking-[0.4em] pt-4 hover:text-pink-300 transition-colors">Tutup Pesan</button>
+                             <button onClick={() => setIsSecretRevealed(false)} className="text-[10px] text-cyan-400 font-bold uppercase tracking-[0.4em] pt-4 hover:text-cyan-300 transition-colors">Tutup Pesan</button>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -629,20 +656,20 @@ const App = () => {
                             key={i} 
                             whileTap={{ scale: 0.98 }}
                             onClick={() => changeTrack(track)}
-                            className={`group p-5 rounded-3xl border transition-all cursor-pointer flex items-center gap-6 ${currentTrack === track.title ? 'bg-pink-500/20 border-pink-500/50 shadow-[0_0_20px_rgba(244,63,94,0.2)]' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}
+                            className={`group p-5 rounded-3xl border transition-all cursor-pointer flex items-center gap-6 ${currentTrack === track.title ? 'bg-cyan-500/20 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.2)]' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}
                           >
-                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all shadow-inner ${currentTrack === track.title ? 'bg-pink-500 text-white animate-pulse' : 'bg-pink-500/10 text-pink-400 group-hover:bg-pink-500 group-hover:text-white'}`}>
+                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all shadow-inner ${currentTrack === track.title ? 'bg-cyan-500 text-white animate-pulse' : 'bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white'}`}>
                               <Play className="w-6 h-6 fill-current" />
                             </div>
                             <div className="flex-1 text-left">
-                              <h3 className={`text-base font-bold transition-colors ${currentTrack === track.title ? 'text-pink-300' : 'text-gray-200 group-hover:text-white'}`}>{track.title}</h3>
+                              <h3 className={`text-base font-bold transition-colors ${currentTrack === track.title ? 'text-cyan-300' : 'text-gray-200 group-hover:text-white'}`}>{track.title}</h3>
                               <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">{track.artist}</p>
                             </div>
                             {currentTrack === track.title && (
                               <motion.div 
                                 animate={{ scale: [1, 1.2, 1] }} 
                                 transition={{ repeat: Infinity, duration: 2 }}
-                                className="w-2 h-2 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(244,63,94,1)]" 
+                                className="w-2 h-2 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,1)]" 
                               />
                             )}
                           </motion.div>
@@ -672,12 +699,12 @@ const App = () => {
                         </div>
                       </div>
                       <motion.button
-                        whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(244,63,94,0.4)" }}
+                        whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6,182,212,0.4)" }}
                         whileTap={{ scale: 0.95 }}
                         onClick={createHeartShower}
-                        className="flex items-center gap-4 px-14 py-5 rounded-full bg-gradient-to-r from-pink-600/30 to-rose-600/30 border border-pink-500/50 text-white text-xs font-bold tracking-[0.4em] uppercase transition-all shadow-[0_10px_40px_rgba(244,63,94,0.2)] backdrop-blur-md"
+                        className="flex items-center gap-4 px-14 py-5 rounded-full bg-gradient-to-r from-cyan-600/30 to-blue-600/30 border border-cyan-500/50 text-white text-xs font-bold tracking-[0.4em] uppercase transition-all shadow-[0_10px_40px_rgba(6,182,212,0.2)] backdrop-blur-md"
                       >
-                        <Heart className="w-6 h-6 fill-current text-pink-400" /> Tekan dengan tulus
+                        <Heart className="w-6 h-6 fill-current text-cyan-400" /> Tekan dengan tulus
                       </motion.button>
                     </div>
                   )}
@@ -711,7 +738,7 @@ const App = () => {
               <button
                 key={i}
                 onClick={() => setCurrentPage(i)}
-                className={`h-1 rounded-full transition-all duration-700 ${currentPage === i ? 'bg-pink-500 w-10 shadow-[0_0_15px_rgba(244,63,94,0.8)]' : 'bg-white/10 w-2 hover:bg-white/30'}`}
+                className={`h-1 rounded-full transition-all duration-700 ${currentPage === i ? 'bg-cyan-500 w-10 shadow-[0_0_15px_rgba(6,182,212,0.8)]' : 'bg-white/10 w-2 hover:bg-white/30'}`}
               />
             ))}
           </div>
@@ -726,7 +753,7 @@ const App = () => {
               animate={{ y: "-20vh", opacity: 0, scale: 2, rotate: 720 }}
               exit={{ opacity: 0 }}
               transition={{ duration: heart.duration, ease: "easeOut" }}
-              className="fixed pointer-events-none z-[100] text-pink-500 drop-shadow-[0_0_15px_rgba(244,63,94,0.6)]"
+              className="fixed pointer-events-none z-[100] text-cyan-500 drop-shadow-[0_0_15px_rgba(6,182,212,0.6)]"
               style={{ fontSize: heart.size }}
             >
               <Heart className="fill-current" />
