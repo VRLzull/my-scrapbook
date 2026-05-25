@@ -118,8 +118,13 @@ const App = () => {
   const [isLetterOpen, setIsLetterOpen] = useState(false);
   const [isSecretRevealed, setIsSecretRevealed] = useState(false);
   const [hearts, setHearts] = useState([]);
+  const [starCount, setStarCount] = useState(40);
   const audioRef = useRef(null);
   const totalPages = PAGES.length;
+
+  useEffect(() => {
+    if (window.innerWidth < 768) setStarCount(15);
+  }, []);
 
   const paginate = (dir) => {
     const next = currentPage + dir;
@@ -157,20 +162,6 @@ const App = () => {
       <div className="nebula-1" />
       <div className="nebula-2" />
       
-  // Floating Stars/Particles - Optimized count for mobile
-  const [starCount, setStarCount] = useState(40);
-  useEffect(() => {
-    if (window.innerWidth < 768) setStarCount(15);
-  }, []);
-
-  return (
-    <div className="fixed inset-0 bg-[#09090b] text-white font-sans overflow-hidden touch-none select-none">
-      <audio ref={audioRef} src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" loop />
-
-      {/* Aesthetic Background Elements */}
-      <div className="nebula-1" />
-      <div className="nebula-2" />
-      
       {/* Floating Stars/Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(starCount)].map((_, i) => (
@@ -195,20 +186,26 @@ const App = () => {
         ))}
       </div>
 
-      {/* Mobile Touch Navigation Overlay (Fallback) */}
-      <div className="md:hidden fixed inset-0 z-30 pointer-events-none flex">
+      {/* Mobile Touch Navigation Overlay (Fallback) - Lower Z-Index to not block drag */}
+      <div className="md:hidden fixed inset-0 z-20 pointer-events-none flex">
         {/* Ketuk Kiri -> Halaman Sebelumnya */}
         <div 
-          onClick={() => paginate(-1)} 
-          className="w-1/4 h-full pointer-events-auto active:bg-white/5 transition-colors flex items-center justify-start pl-4"
+          onClick={(e) => {
+            e.stopPropagation();
+            paginate(-1);
+          }} 
+          className="w-1/5 h-full pointer-events-auto active:bg-white/5 transition-colors flex items-center justify-start pl-4"
         >
           {currentPage > 0 && <ChevronLeft className="w-8 h-8 text-white/20" />}
         </div>
-        <div className="w-2/4 h-full pointer-events-none" />
+        <div className="w-3/5 h-full pointer-events-none" />
         {/* Ketuk Kanan -> Halaman Selanjutnya */}
         <div 
-          onClick={() => paginate(1)} 
-          className="w-1/4 h-full pointer-events-auto active:bg-white/5 transition-colors flex items-center justify-end pr-4"
+          onClick={(e) => {
+            e.stopPropagation();
+            paginate(1);
+          }} 
+          className="w-1/5 h-full pointer-events-auto active:bg-white/5 transition-colors flex items-center justify-end pr-4"
         >
           {currentPage < totalPages - 1 && <ChevronRight className="w-8 h-8 text-white/20" />}
         </div>
@@ -244,11 +241,15 @@ const App = () => {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.5}
               onDragEnd={(e, { offset, velocity }) => {
-                const swipe = offset.x * velocity.x;
-                // Geser ke Kiri (tangan gerak ke kiri) -> Halaman Selanjutnya
-                if (swipe < -3000) paginate(1);
-                // Geser ke Kanan (tangan gerak ke kanan) -> Halaman Sebelumnya
-                else if (swipe > 3000) paginate(-1);
+                const swipeThreshold = 50;
+                // Geser ke Kanan (tangan gerak ke kanan) -> Halaman Selanjutnya (Sesuai request user)
+                if (offset.x > swipeThreshold) {
+                  paginate(1);
+                } 
+                // Geser ke Kiri (tangan gerak ke kiri) -> Halaman Sebelumnya
+                else if (offset.x < -swipeThreshold) {
+                  paginate(-1);
+                }
               }}
               initial={{ 
                 opacity: 0, 
