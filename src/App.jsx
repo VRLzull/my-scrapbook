@@ -58,6 +58,16 @@ const PAGES = [
     title: 'moving memories',
     desc: 'Beberapa kenangan rasanya lebih hidup kalau diputar ulang.',
     quote: '"seperti pita film tua yang terus berputar..."',
+    photos: [
+      { url: '/1.jpeg' },
+      { url: '/2.jpeg' },
+      { url: '/4.jpeg' },
+      { url: '/6.jpeg' },
+      { url: '/8.jpeg' },
+      { url: '/10.jpeg' },
+      { url: '/12.jpeg' },
+      { url: '/14.jpeg' },
+    ]
   },
   {
     id: 'timeline',
@@ -206,6 +216,49 @@ const PhotoCard = ({ photo, index }) => {
           </div>
         </div>
       </motion.div>
+    </div>
+  );
+};
+
+const Slideshow = ({ photos }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % photos.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [photos.length]);
+
+  return (
+    <div className="relative w-full aspect-video bg-black/40 rounded-3xl border border-white/10 shadow-inner overflow-hidden flex items-center justify-center">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={currentIndex}
+          src={photos[currentIndex].url}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] contrast-[1.1]"
+        />
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-6 left-6 flex items-center gap-3 z-10">
+        <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+        <span className="text-[10px] text-white/60 font-mono tracking-widest uppercase">
+          Memory_{currentIndex + 1}.jpg
+        </span>
+      </div>
+      {/* Slideshow Indicators */}
+      <div className="absolute bottom-6 right-6 flex gap-1.5 z-10">
+        {photos.map((_, i) => (
+          <div 
+            key={i} 
+            className={`h-1 rounded-full transition-all duration-500 ${i === currentIndex ? 'bg-cyan-500 w-4' : 'bg-white/20 w-1'}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -536,14 +589,9 @@ const App = () => {
                         <h2 className="text-5xl font-serif text-amber-100 lowercase text-glow-gold">{PAGES[currentPage].title}</h2>
                         <p className="text-gray-400 text-xs px-8 leading-relaxed italic">{PAGES[currentPage].desc}</p>
                       </div>
-                      <div className="relative w-full aspect-video bg-black/40 rounded-3xl border border-white/10 shadow-inner flex items-center justify-center group overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/5 via-transparent to-amber-500/5 pointer-events-none" />
-                        <Play className="w-16 h-16 text-white/20 group-hover:text-pink-400/60 transition-all duration-500 scale-90 group-hover:scale-100" />
-                        <div className="absolute bottom-6 left-6 flex items-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-                          <span className="text-[10px] text-white/40 font-mono tracking-widest uppercase">Memories_01.mp4</span>
-                        </div>
-                      </div>
+                      
+                      <Slideshow photos={PAGES[currentPage].photos} />
+
                       <p className="font-handwritten text-pink-300/60 text-2xl italic tracking-wide">{PAGES[currentPage].quote}</p>
                     </div>
                   )}
