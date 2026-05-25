@@ -97,9 +97,9 @@ const PAGES = [
     title: 'songs that remind me of you',
     desc: 'Beberapa lagu ternyata bisa nyimpen perasaan lebih baik daripada kata-kata.',
     tracks: [
-      { title: 'Secukupnya', artist: 'Hindia', audio: 'https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3' },
-      { title: 'Rumah Ke Rumah', artist: 'Hindia', audio: 'https://assets.mixkit.co/music/preview/mixkit-tender-love-155.mp3' },
-      { title: 'Evaluasi', artist: 'Hindia', audio: 'https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3' },
+      { title: 'Secukupnya', artist: 'Hindia', audio: '/Hindia - Secukupnya Lyric Video - OST. Nanti Kita Cerita Tentang Hari Ini.mp3' },
+      { title: 'Rumah Ke Rumah', artist: 'Hindia', audio: '/Rumah Ke Rumah.mp3' },
+      { title: 'Cincin', artist: 'Hindia', audio: '/Hindia - Cincin Official Lyric Video.mp3' },
     ]
   },
   {
@@ -175,6 +175,7 @@ const PhotoCard = ({ photo, index }) => {
 const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(null);
   const [isLetterOpen, setIsLetterOpen] = useState(false);
   const [isSecretRevealed, setIsSecretRevealed] = useState(false);
   const [hearts, setHearts] = useState([]);
@@ -214,6 +215,15 @@ const App = () => {
     }
   };
 
+  const changeTrack = (track) => {
+    if (audioRef.current) {
+      audioRef.current.src = track.audio;
+      audioRef.current.play().catch(console.error);
+      setIsPlaying(true);
+      setCurrentTrack(track.title);
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-[#09090b] text-white font-sans overflow-hidden touch-none select-none">
       {/* 
@@ -222,11 +232,11 @@ const App = () => {
         and put the file in the 'public' folder.
       */}
       <audio 
-        ref={audioRef} 
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
-        loop 
-        preload="auto"
-      />
+         ref={audioRef} 
+         src="/Hindia - Secukupnya Lyric Video - OST. Nanti Kita Cerita Tentang Hari Ini.mp3" 
+         loop 
+         preload="auto"
+       />
 
       {/* Aesthetic Background Elements */}
       <div className="nebula-1" />
@@ -604,15 +614,23 @@ const App = () => {
                           <motion.div 
                             key={i} 
                             whileTap={{ scale: 0.98 }}
-                            className="group p-5 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 hover:shadow-2xl transition-all cursor-pointer flex items-center gap-6"
+                            onClick={() => changeTrack(track)}
+                            className={`group p-5 rounded-3xl border transition-all cursor-pointer flex items-center gap-6 ${currentTrack === track.title ? 'bg-pink-500/20 border-pink-500/50 shadow-[0_0_20px_rgba(244,63,94,0.2)]' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}
                           >
-                            <div className="w-12 h-12 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-all shadow-inner">
+                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all shadow-inner ${currentTrack === track.title ? 'bg-pink-500 text-white animate-pulse' : 'bg-pink-500/10 text-pink-400 group-hover:bg-pink-500 group-hover:text-white'}`}>
                               <Play className="w-6 h-6 fill-current" />
                             </div>
                             <div className="flex-1 text-left">
-                              <h3 className="text-base font-bold text-gray-200 group-hover:text-white transition-colors">{track.title}</h3>
+                              <h3 className={`text-base font-bold transition-colors ${currentTrack === track.title ? 'text-pink-300' : 'text-gray-200 group-hover:text-white'}`}>{track.title}</h3>
                               <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">{track.artist}</p>
                             </div>
+                            {currentTrack === track.title && (
+                              <motion.div 
+                                animate={{ scale: [1, 1.2, 1] }} 
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                className="w-2 h-2 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(244,63,94,1)]" 
+                              />
+                            )}
                           </motion.div>
                         ))}
                       </div>
