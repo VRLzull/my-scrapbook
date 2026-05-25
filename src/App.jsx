@@ -22,9 +22,10 @@ const PAGES = [
     title: 'little memories',
     desc: 'Aku nggak sadar ternyata kita punya cukup banyak kenangan sampai semuanya terkumpul di sini.',
     photos: [
-      { url: 'https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?q=80&w=600&auto=format&fit=crop', caption: 'masih jadi salah satu foto favoritku.' },
-      { url: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop', caption: 'foto sederhana, tapi momentnya nggak sesederhana itu.' },
-      { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop', caption: 'aku suka hari ini.' },
+      { url: '/1.jpeg', caption: 'salah satu moment yang paling aku inget.' },
+      { url: '/2.jpeg', caption: 'foto sederhana, tapi momentnya nggak sesederhana itu.' },
+      { url: '/4.jpeg', caption: 'aku suka hari ini.' },
+      { url: '/5.jpeg', caption: 'setiap sudutnya punya cerita sendiri.' },
     ]
   },
   {
@@ -32,10 +33,23 @@ const PAGES = [
     type: 'memories',
     title: 'more memories',
     photos: [
-      { url: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=600&auto=format&fit=crop', caption: 'ternyata moment kecil bisa jadi kenangan besar ya.' },
-      { url: 'https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?q=80&w=600&auto=format&fit=crop', caption: 'senyummu di foto ini masih sama seperti yang aku inget.' },
-      { url: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=600&auto=format&fit=crop', caption: 'random, tapi berarti.' },
-      { url: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e?q=80&w=600&auto=format&fit=crop', caption: 'salah satu hari yang nggak pengen aku lupain.' },
+      { url: '/6.jpeg', caption: 'ternyata moment kecil bisa jadi kenangan besar ya.' },
+      { url: '/7.jpeg', caption: 'senyummu di foto ini masih sama seperti yang aku inget.' },
+      { url: '/8.jpeg', caption: 'random, tapi berarti.' },
+      { url: '/9.jpeg', caption: 'salah satu hari yang nggak pengen aku lupain.' },
+    ]
+  },
+  {
+    id: 'memories-3',
+    type: 'memories',
+    title: 'every moment counts',
+    photos: [
+      { url: '/10.jpeg', caption: 'makasih ya udah ada di bagian ini.' },
+      { url: '/11.jpeg', caption: 'cerita kita masih terus berlanjut.' },
+      { url: '/12.jpeg', caption: 'tawa yang selalu bikin hariku beda.' },
+      { url: '/13.jpeg', caption: 'moment sederhana yang berarti.' },
+      { url: '/14.jpeg', caption: 'aku bersyukur kenal kamu.' },
+      { url: '/WhatsApp Image 2026-05-24 at 11.32.43 PM.jpeg', caption: 'moment yang ngga terduga tapi manis.' },
     ]
   },
   {
