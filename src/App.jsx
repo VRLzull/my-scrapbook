@@ -157,9 +157,23 @@ const App = () => {
       <div className="nebula-1" />
       <div className="nebula-2" />
       
+  // Floating Stars/Particles - Optimized count for mobile
+  const [starCount, setStarCount] = useState(40);
+  useEffect(() => {
+    if (window.innerWidth < 768) setStarCount(15);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 bg-[#09090b] text-white font-sans overflow-hidden touch-none select-none">
+      <audio ref={audioRef} src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" loop />
+
+      {/* Aesthetic Background Elements */}
+      <div className="nebula-1" />
+      <div className="nebula-2" />
+      
       {/* Floating Stars/Particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => (
+        {[...Array(starCount)].map((_, i) => (
           <motion.div
             key={i}
             animate={{
@@ -228,18 +242,26 @@ const App = () => {
               key={currentPage}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.7}
+              dragElastic={0.5}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = offset.x * velocity.x;
-                // Geser ke Kiri (offset.x negatif) -> Halaman Selanjutnya
-                if (swipe < -5000) paginate(1);
-                // Geser ke Kanan (offset.x positif) -> Halaman Sebelumnya
-                else if (swipe > 5000) paginate(-1);
+                // Geser ke Kiri (tangan gerak ke kiri) -> Halaman Selanjutnya
+                if (swipe < -3000) paginate(1);
+                // Geser ke Kanan (tangan gerak ke kanan) -> Halaman Sebelumnya
+                else if (swipe > 3000) paginate(-1);
               }}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 1.05, y: -20 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ 
+                opacity: 0, 
+                x: window.innerWidth < 768 ? 50 : 100, 
+                scale: 0.98 
+              }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ 
+                opacity: 0, 
+                x: window.innerWidth < 768 ? -50 : -100, 
+                scale: 0.98 
+              }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="w-full h-full glass-card p-10 md:p-16 flex flex-col items-center scrollbar-hide touch-pan-y"
             >
               <div className="w-full h-full flex flex-col items-center relative overflow-y-auto scrollbar-hide">
