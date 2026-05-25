@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronLeft, ChevronRight, Disc, Heart, 
-  GraduationCap, Lock, Play, Mail, Sparkles 
+  GraduationCap, Lock, Play, Mail, Sparkles, CheckCircle2, Circle, Trash2
 } from 'lucide-react';
 
 // Content exactly as requested with premium styling
@@ -11,9 +11,9 @@ const PAGES = [
     id: 'cover',
     type: 'cover',
     title: 'welcome',
-    badge: 'A Little Memory Lane ✨',
+    badge: 'A Little Memory Lane for Aaliyah Ryanzara ✨',
     subtitle: 'Selamat datang di tempat kecil yang isinya banyak cerita tentang kamu.',
-    extra: 'Tentang tawa kecil, moment random, hari-hari sederhana, dan kenangan yang ternyata masih aku ingat sampai sekarang.',
+    extra: 'Tentang tawa kecil, moment random, hari-hari sederhana, dan kenangan yang ternyata masih aku ingat sampai sekarang.\n\nAku cuma nggak mau semuanya hilang begitu aja. Jadi aku bikin tempat ini… supaya semuanya tetap punya rumah.',
     buttonText: 'open memories'
   },
   {
@@ -22,10 +22,10 @@ const PAGES = [
     title: 'little memories',
     desc: 'Aku nggak sadar ternyata kita punya cukup banyak kenangan sampai semuanya terkumpul di sini.',
     photos: [
-      { url: '/1.jpeg', caption: 'salah satu moment yang paling aku inget.' },
+      { url: '/1.jpeg', caption: 'masih jadi salah satu foto favoritku.' },
       { url: '/2.jpeg', caption: 'foto sederhana, tapi momentnya nggak sesederhana itu.' },
       { url: '/4.jpeg', caption: 'aku suka hari ini.' },
-      { url: '/5.jpeg', caption: 'setiap sudutnya punya cerita sendiri.' },
+      { url: '/5.jpeg', caption: 'ternyata moment kecil bisa jadi kenangan besar ya.' },
     ]
   },
   {
@@ -33,10 +33,10 @@ const PAGES = [
     type: 'memories',
     title: 'more memories',
     photos: [
-      { url: '/6.jpeg', caption: 'ternyata moment kecil bisa jadi kenangan besar ya.' },
-      { url: '/7.jpeg', caption: 'senyummu di foto ini masih sama seperti yang aku inget.' },
-      { url: '/8.jpeg', caption: 'random, tapi berarti.' },
-      { url: '/9.jpeg', caption: 'salah satu hari yang nggak pengen aku lupain.' },
+      { url: '/6.jpeg', caption: 'senyummu di foto ini masih sama seperti yang aku inget.' },
+      { url: '/7.jpeg', caption: 'random, tapi berarti.' },
+      { url: '/8.jpeg', caption: 'salah satu hari yang nggak pengen aku lupain.' },
+      { url: '/9.jpeg', caption: 'kadang foto bisa nyimpen perasaan lebih lama daripada ingatan.' },
     ]
   },
   {
@@ -44,12 +44,12 @@ const PAGES = [
     type: 'memories',
     title: 'every moment counts',
     photos: [
-      { url: '/10.jpeg', caption: 'makasih ya udah ada di bagian ini.' },
-      { url: '/11.jpeg', caption: 'cerita kita masih terus berlanjut.' },
-      { url: '/12.jpeg', caption: 'tawa yang selalu bikin hariku beda.' },
-      { url: '/13.jpeg', caption: 'moment sederhana yang berarti.' },
-      { url: '/14.jpeg', caption: 'aku bersyukur kenal kamu.' },
-      { url: '/WhatsApp Image 2026-05-24 at 11.32.43 PM.jpeg', caption: 'moment yang ngga terduga tapi manis.' },
+      { url: '/10.jpeg', caption: 'moment yang ngga terduga tapi manis.' },
+      { url: '/11.jpeg', caption: 'setiap sudutnya punya cerita sendiri.' },
+      { url: '/12.jpeg', caption: 'cerita kita masih terus berlanjut.' },
+      { url: '/13.jpeg', caption: 'tawa yang selalu bikin hariku beda.' },
+      { url: '/14.jpeg', caption: 'moment sederhana yang berarti.' },
+      { url: '/WhatsApp Image 2026-05-24 at 11.32.43 PM.jpeg', caption: 'aku bersyukur kenal kamu.' },
     ]
   },
   {
@@ -74,10 +74,24 @@ const PAGES = [
     id: 'graduation',
     type: 'special',
     title: 'you really made it',
-    badge: 'Selamat yaa 🤍',
+    badge: 'Selamat yaa, Aaliyah Ryanzara 🤍',
     message: 'Setelah semua perjuangan panjang itu, akhirnya kamu sampai juga di titik ini.',
     subMessage: 'Aku harap hari wisudamu dipenuhi banyak senyum, banyak rasa bangga, dan banyak orang yang sayang sama kamu. Karena kamu memang pantas mendapatkan semua hal baik itu.',
     extra: 'Dan untuk semua versi dirimu yang pernah capek, nangis, stres, atau pengen nyerah… lihat sekarang. Kamu berhasil sampai sejauh ini.'
+  },
+  {
+    id: 'wishlist',
+    type: 'wishlist',
+    title: 'our wishlist',
+    desc: 'Beberapa hal yang pengen aku lakuin atau tempat yang pengen aku kunjungi bareng kamu.',
+    items: [
+      { text: 'Nonton senja di pinggir pantai', checked: false },
+      { text: 'Makan es krim favorit bareng', checked: true },
+      { text: 'Jalan-jalan ke toko buku seharian', checked: false },
+      { text: 'Foto box lucu bareng lagi', checked: true },
+      { text: 'Keliling kota naik motor malam hari', checked: false },
+      { text: 'Masak bareng (walaupun berantakan)', checked: false },
+    ]
   },
   {
     id: 'honest-letter',
@@ -129,7 +143,7 @@ const PAGES = [
     type: 'end',
     title: 'thank you',
     message: 'Terima kasih untuk semua cerita yang pernah kita punya.\n\nTerima kasih untuk semua tawa, moment random, obrolan kecil, dan kenangan yang pernah kita lewati.\n\nMungkin sekarang semuanya udah berbeda. Tapi jujur, aku tetap bersyukur pernah kenal kamu.\n\nDan sekali lagi… selamat wisuda ya 🤍\n\nSemoga setelah ini hidupmu dipenuhi banyak hal baik, banyak kebahagiaan, dan orang-orang yang selalu menghargai kamu.',
-    lastPageText: 'Mungkin scrapbook ini selesai di halaman terakhir. Tapi beberapa kenangan ternyata nggak benar-benar selesai.',
+    lastPageText: '“some memories never really leave.”',
     quote: '“you’ll always be one of my favorite stories.”'
   }
 ];
@@ -202,6 +216,26 @@ const App = () => {
   const [isSecretRevealed, setIsSecretRevealed] = useState(false);
   const [hearts, setHearts] = useState([]);
   const [starCount, setStarCount] = useState(40);
+  
+  // Wishlist State with LocalStorage Persistence
+  const [wishlist, setWishlist] = useState(() => {
+    const saved = localStorage.getItem('acha_wishlist');
+    return saved ? JSON.parse(saved) : [
+      { text: 'Menemukan hobi baru yang bikin happy', checked: false },
+      { text: 'Solo traveling ke tempat impian', checked: false },
+      { text: 'Sukses di karir/pekerjaan pertama', checked: false },
+      { text: 'Tetap jadi orang yang baik dan tulus', checked: true },
+      { text: 'Lebih banyak waktu untuk self-care', checked: false },
+      { text: 'Mewujudkan mimpi yang selama ini tertunda', checked: false },
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('acha_wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+
+  const [newWishlistText, setNewWishlistText] = useState('');
+
   const audioRef = useRef(null);
   const totalPages = PAGES.length;
 
@@ -243,6 +277,25 @@ const App = () => {
       audioRef.current.play().catch(console.error);
       setIsPlaying(true);
       setCurrentTrack(track.title);
+    }
+  };
+
+  const toggleWishlistItem = (index) => {
+    const newWishlist = [...wishlist];
+    newWishlist[index].checked = !newWishlist[index].checked;
+    setWishlist(newWishlist);
+  };
+
+  const removeWishlistItem = (index) => {
+    const newWishlist = wishlist.filter((_, i) => i !== index);
+    setWishlist(newWishlist);
+  };
+
+  const addWishlistItem = (e) => {
+    e.preventDefault();
+    if (newWishlistText.trim()) {
+      setWishlist([...wishlist, { text: newWishlistText, checked: false }]);
+      setNewWishlistText('');
     }
   };
 
@@ -535,6 +588,64 @@ const App = () => {
                         <p className="text-gray-400 text-xs leading-relaxed px-4">{PAGES[currentPage].subMessage}</p>
                         <p className="text-cyan-300/40 text-[10px] italic leading-relaxed px-6 uppercase tracking-widest">{PAGES[currentPage].extra}</p>
                       </div>
+                    </div>
+                  )}
+
+                  {PAGES[currentPage].type === 'wishlist' && (
+                    <div className="w-full space-y-8 flex-1 flex flex-col">
+                      <div className="space-y-2">
+                        <h2 className="text-5xl font-serif text-blue-100 text-center lowercase text-glow-blue tracking-tight">{PAGES[currentPage].title}</h2>
+                        <p className="text-gray-400 text-[10px] italic px-8 leading-relaxed font-sans">{PAGES[currentPage].desc}</p>
+                      </div>
+
+                      <div className="flex-1 overflow-y-auto scrollbar-hide space-y-3 px-6 max-w-sm mx-auto w-full">
+                        {wishlist.map((item, i) => (
+                          <motion.div 
+                            key={i}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md group"
+                          >
+                            <div 
+                              onClick={() => toggleWishlistItem(i)}
+                              className="flex-1 flex items-center gap-4 cursor-pointer"
+                            >
+                              {item.checked ? (
+                                <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                              ) : (
+                                <Circle className="w-5 h-5 text-gray-500 flex-shrink-0" />
+                              )}
+                              <span className={`text-sm font-medium transition-all ${item.checked ? 'text-gray-500 line-through' : 'text-gray-200'}`}>
+                                {item.text}
+                              </span>
+                            </div>
+                            <button 
+                              onClick={() => removeWishlistItem(i)}
+                              className="opacity-0 group-hover:opacity-100 p-2 text-gray-500 hover:text-red-400 transition-all"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <form onSubmit={addWishlistItem} className="px-6 max-w-sm mx-auto w-full pb-4">
+                        <div className="relative group">
+                          <input 
+                            type="text" 
+                            value={newWishlistText}
+                            onChange={(e) => setNewWishlistText(e.target.value)}
+                            placeholder="tambah wishlist baru..."
+                            className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-5 text-xs text-gray-200 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all placeholder:text-gray-600"
+                          />
+                          <button 
+                            type="submit"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all shadow-lg"
+                          >
+                            <Sparkles className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   )}
 
